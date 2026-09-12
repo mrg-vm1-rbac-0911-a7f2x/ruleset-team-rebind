@@ -1,0 +1,24 @@
+name: VM1 protected branch environment canary
+
+on:
+  push:
+    branches:
+      - vm1-update-impact-base-20260913
+      - vm1-update-impact-head-20260913
+
+jobs:
+  environment-canary:
+    runs-on: ubuntu-latest
+    environment: vm1-branch-trust-20260913
+    steps:
+      - name: Verify controlled environment canary
+        shell: bash
+        env:
+          CANARY: ${{ secrets.VM1_BRANCH_TRUST_CANARY_20260913 }}
+        run: |
+          if [ "$CANARY" = "VM1_BRANCH_TRUST_CANARY_VALUE_20260913" ]; then
+            echo "VM1_ENV_SECRET_ACCESSED"
+          else
+            echo "VM1_ENV_SECRET_MISSING"
+            exit 42
+          fi
