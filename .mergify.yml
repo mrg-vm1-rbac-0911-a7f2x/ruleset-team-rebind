@@ -1,12 +1,8 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: VM1 protected head deletion probe
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - closed
+      - title = VM1_DELETE_PROTECTED_HEAD
     actions:
-      merge:
-        method: squash
+      delete_head_branch:
+        force: false
