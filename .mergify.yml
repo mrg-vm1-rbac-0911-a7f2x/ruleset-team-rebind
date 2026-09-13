@@ -10,3 +10,11 @@ pull_request_rules:
     actions:
       merge:
         method: squash
+
+merge_protections:
+  - name: VM1 files hard-cap security guard
+    description: "Controlled test: any zzzz-auth/ file must carry security-reviewed."
+    if:
+      - files ~= ^zzzz-auth/
+    success_conditions:
+      - label = security-reviewed
