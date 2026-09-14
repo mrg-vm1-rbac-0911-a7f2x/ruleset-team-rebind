@@ -10,3 +10,10 @@ pull_request_rules:
     actions:
       merge:
         method: squash
+
+merge_protections:
+  - name: VM1 CODEOWNERS owner-set invalidation probe
+    if:
+      - title = VM1 CODEOWNERS owner-set update native discriminator
+    success_conditions:
+      - -draft
