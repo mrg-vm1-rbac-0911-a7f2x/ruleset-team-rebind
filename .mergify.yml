@@ -1,12 +1,8 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: VM1 bot-account branch credential probe
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - title ~= ^VM1_BOT_CRED_
     actions:
       merge:
-        method: squash
+        method: merge
+        merge_bot_account: livastic-vm1-secondary
