@@ -1,12 +1,9 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
-pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
-    conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
-    actions:
-      merge:
-        method: squash
+merge_protections:
+  - name: vm1-duplicate-mp-name
+    if: true
+    success_conditions:
+      - label = bug
+  - name: vm1-duplicate-mp-name
+    if: true
+    success_conditions:
+      - label = enhancement
