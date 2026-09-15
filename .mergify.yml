@@ -3,10 +3,10 @@ queue_rules:
     queue_conditions: []
 
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: VM1_FF_REVIEW_PARITY_260916
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - title = VM1_FF_REVIEW_PARITY_260916
+      - base = vm1-ff-review-base-260916
     actions:
       merge:
-        method: squash
+        method: fast-forward
