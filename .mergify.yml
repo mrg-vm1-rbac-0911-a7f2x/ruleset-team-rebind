@@ -1,12 +1,20 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
-pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+commands_restrictions:
+  queue:
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - sender = livastic-vm1-primary
+merge_queue:
+  queue_controls_comment: false
+queue_rules:
+  - name: vm1 generated checked marker queue sink
+    branch_protection_injection_mode: merge
+    queue_conditions:
+      - title = VM1_GENERATED_QUEUE_CONTROL_CREATED
+    merge_conditions:
+      - label = vm1-never-generated-marker-merge
+pull_request_rules:
+  - name: vm1 reflect body as Mergify comment
+    conditions:
+      - title = VM1_GENERATED_QUEUE_CONTROL_CREATED
     actions:
-      merge:
-        method: squash
+      comment:
+        message: '{{ body }}'
