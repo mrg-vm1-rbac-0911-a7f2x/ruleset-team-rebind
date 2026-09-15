@@ -5,6 +5,7 @@ defaults:
     batch_max_wait_time: 1 sec
     max_checks_retries: 1
     draft_bot_account: livastic-vm1-primary
+    merge_bot_account: livastic-vm1-primary
 queue_rules:
   - name: vm1 queue default draft inherit
     queue_conditions:
