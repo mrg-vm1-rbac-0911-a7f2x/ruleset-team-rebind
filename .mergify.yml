@@ -1,12 +1,17 @@
+defaults:
+  queue_rule:
+    batch_size: 1
+    batch_max_wait_time: 1 sec
+    merge_bot_account: livastic-vm1-primary
 queue_rules:
-  - name: default
-    queue_conditions: []
-
-pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
-    conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
-    actions:
-      merge:
-        method: squash
+  - name: vm1 merge bot inherit control
+    branch_protection_injection_mode: none
+    queue_conditions:
+      - title = VM1_MERGE_BOT_INHERIT_CONTROL
+    merge_conditions: true
+  - name: vm1 merge bot explicit null target
+    branch_protection_injection_mode: none
+    merge_bot_account: null
+    queue_conditions:
+      - title = VM1_MERGE_BOT_NULL_OVERRIDE
+    merge_conditions: true
