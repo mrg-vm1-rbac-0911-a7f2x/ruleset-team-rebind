@@ -1,12 +1,9 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: vm1 dismiss approvals only synchronize
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - title = VM1_DISMISS_SYNC_NONPUSH
     actions:
-      merge:
-        method: squash
+      dismiss_reviews:
+        approved: true
+        changes_requested: false
+        when: synchronize
