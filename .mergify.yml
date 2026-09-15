@@ -1,12 +1,18 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
+defaults:
+  actions:
+    comment:
+      bot_account: livastic-vm1-primary
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: vm1 default bot inherit control
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - title = VM1_DEFAULT_BOT_INHERIT_CONTROL
     actions:
-      merge:
-        method: squash
+      comment:
+        message: VM1_DEFAULT_BOT_INHERIT_CONTROL_COMMENT
+  - name: vm1 explicit null bot override
+    conditions:
+      - title = VM1_DEFAULT_BOT_NULL_OVERRIDE
+    actions:
+      comment:
+        bot_account: null
+        message: VM1_DEFAULT_BOT_NULL_OVERRIDE_COMMENT
