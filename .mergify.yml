@@ -1,12 +1,8 @@
-queue_rules:
-  - name: default
-    queue_conditions: []
-
 pull_request_rules:
-  - name: VM1_MIN2_REQUIRED_REVIEWER_PARITY
+  - name: vm1 milestone rename freshness
     conditions:
-      - title = VM1_MIN2_REQUIRED_REVIEWER_PARITY
-      - label = vm1-min2-review-trigger
+      - milestone = VM1_MILESTONE_TRUSTED_260915
     actions:
-      merge:
-        method: squash
+      label:
+        toggle:
+          - VM1_MILESTONE_MATCH_260915
