@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@mergifyio/playwright": "0.3.7",
+    "@playwright/test": "1.62.0"
+  }
+}
