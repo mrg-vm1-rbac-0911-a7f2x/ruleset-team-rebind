@@ -1,0 +1,21 @@
+name: VM1 Playwright Path Collision
+on:
+  push:
+    branches:
+      - vm1-pw-state-pathcoll-260921c
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MERGIFY_TOKEN: ${{ secrets.MERGIFY_TOKEN_VM1_STATE_PROOF }}
+      PLAYWRIGHT_MERGIFY_TEST_SELECTION_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npx playwright test tamper.spec.js --workers=1
